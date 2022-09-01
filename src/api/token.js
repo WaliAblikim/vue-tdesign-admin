@@ -1,5 +1,5 @@
 import { post } from "./requist";
-const create = (username, password) => {
+const create = ({ username, password }) => {
   return post("/tokens", { username, password });
 };
 
