@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import Sidebar from "@/views/Sidebar";
-import Header from "@/views/Header";
+import Sidebar from "@/views/common/sidebar";
+import Header from "@/views/common/header";
 
 export default {
   name: "Layout",
