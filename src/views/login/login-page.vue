@@ -50,6 +50,7 @@ export default {
   },
   data() {
     return {
+      user: this.$store.state.user,
       formData: {
         username: "",
         password: "",
@@ -80,7 +81,10 @@ export default {
         this.$store
           .dispatch("login", this.formData)
           .then(() => {
-            this.$router.replace({ path: this.$route.query.redirect || "/" });
+            this.$store.dispatch("modules/user/fetchCurrentUserInfo");
+            this.$router.push({
+              path: this.$route.query.redirect || "/",
+            });
           })
           .finally(() => {
             this.loading = false;
