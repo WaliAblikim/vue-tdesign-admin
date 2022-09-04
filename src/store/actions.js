@@ -10,12 +10,16 @@ export const actions = {
       commit("SET_TOKEN", token);
       storage.set("token", token);
       resetRouter();
-      MessagePlugin.success("登录成功！");
+      await MessagePlugin.success("登录成功！");
     }
   },
   async logout({ commit }) {
     commit("CLEAR_TOKEN");
-    storage.set("token", "");
+    commit("user/CLEAR_CURRENT_USER");
+    commit("permission/CLEAR_ROUTES");
+    storage.remove("token");
+    storage.remove("currentUser");
+    storage.remove("permissionRoutes");
     resetRouter();
   },
 };

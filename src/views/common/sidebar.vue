@@ -1,7 +1,7 @@
 <template>
   <t-aside :width="collapsed ? '64px' : '232px'">
     <div class="menu">
-      <t-menu :collapsed="collapsed">
+      <t-menu :collapsed="collapsed" :defaultValue="$route.name">
         <sidebar-item
           v-for="item in menuRoutes"
           v-bind:key="item.name"
@@ -12,8 +12,8 @@
   </t-aside>
 </template>
 <script>
-import { menuRoutes } from "@/router/index";
 import SidebarItem from "@/components/SidebarItem";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Sidebar",
@@ -24,10 +24,8 @@ export default {
       default: false,
     },
   },
-  data() {
-    return {
-      menuRoutes,
-    };
+  computed: {
+    ...mapGetters(["menuRoutes"]),
   },
 };
 </script>

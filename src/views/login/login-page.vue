@@ -81,7 +81,7 @@ export default {
         this.$store
           .dispatch("login", this.formData)
           .then(() => {
-            this.$store.dispatch("modules/user/fetchCurrentUserInfo");
+            this.$store.dispatch("user/fetchCurrentUserInfo");
             this.$router.push({
               path: this.$route.query.redirect || "/",
             });
