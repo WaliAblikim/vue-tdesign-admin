@@ -4,6 +4,8 @@ import VueRouter from "vue-router";
 import PageLayout from "@/views/common/page-layout";
 import Login from "@/views/login/login-page";
 import { permissions } from "@/config/permission.config";
+import NotFound from "@/views/error/not-found";
+import NotAllowed from "@/views/error/not-allowed";
 
 Vue.use(VueRouter);
 
@@ -50,6 +52,16 @@ export const routes = [
     path: "/login",
     name: "login",
     component: Login,
+  },
+  { path: "/404", component: NotFound, name: "notFound" },
+  {
+    path: "/403",
+    component: NotAllowed,
+    name: "notAllowed",
+  },
+  {
+    path: "*",
+    redirect: "/404",
   },
 ];
 
