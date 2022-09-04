@@ -23,16 +23,31 @@ const getters = {
       ? state.permission.routes.find((item) => item.name === menuRootName)
           .children
       : [],
+  permissionRoutesNameList: (state) =>
+    state.permission.routes
+      ? buildPermissionRoutesNameList(state.permission.routes)
+      : [],
+  userPermissions: (state) => state.user.permissions,
+};
+
+const buildPermissionRoutesNameList = (routes) => {
+  let nameList = [];
+  routes.forEach((item) => {
+    if (item.children) {
+      nameList.push(...buildPermissionRoutesNameList(item.children));
+    }
+    nameList.push(item.name);
+  });
+  return nameList;
 };
 
 const state = () => ({ token: storage.get("token") });
-
 export default new Vuex.Store({
   state,
   actions,
   mutations,
-  getters,
   modules,
+  getters,
   strict: debug,
   plugins: debug ? [createLogger()] : [],
 });

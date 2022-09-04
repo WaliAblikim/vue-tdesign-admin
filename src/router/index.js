@@ -1,11 +1,12 @@
 import Vue from "vue";
-import Layout from "@/views/common/layout";
 import VueRouter from "vue-router";
-import PageLayout from "@/views/common/page-layout";
-import Login from "@/views/login/login-page";
-import { permissions } from "@/config/permission.config";
-import NotFound from "@/views/error/not-found";
-import NotAllowed from "@/views/error/not-allowed";
+import Layout from "@/views/common/layout.vue";
+import PageLayout from "@/views/common/page-layout.vue";
+import Login from "@/views/login/login-page.vue";
+import NotFound from "@/views/error/not-found.vue";
+
+import { permissions } from "@/config/permission.config.js";
+import NotAllowed from "@/views/error/not-allowed.vue";
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,7 @@ const menuRoutes = [
     ],
   },
 ];
+
 export const menuRootName = "menuRoot";
 export const routes = [
   {
@@ -50,8 +52,22 @@ export const routes = [
   },
   {
     path: "/login",
-    name: "login",
     component: Login,
+    name: "login",
+  },
+  {
+    path: "/404",
+    component: NotFound,
+    name: "notFound",
+  },
+  {
+    path: "/403",
+    component: NotAllowed,
+    name: "notAllowed",
+  },
+  {
+    path: "*",
+    redirect: "/404",
   },
   { path: "/404", component: NotFound, name: "notFound" },
   {
