@@ -4,7 +4,6 @@ import Layout from "@/views/common/layout.vue";
 import PageLayout from "@/views/common/page-layout.vue";
 import Login from "@/views/login/login-page.vue";
 import NotFound from "@/views/error/not-found.vue";
-
 import { permissions } from "@/config/permission.config.js";
 import NotAllowed from "@/views/error/not-allowed.vue";
 

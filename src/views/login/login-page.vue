@@ -43,6 +43,7 @@
 
 <script>
 import { Icon } from "tdesign-icons-vue";
+
 export default {
   name: "Login",
   components: {
@@ -80,9 +81,9 @@ export default {
       validateResult === true &&
         this.$store
           .dispatch("login", this.formData)
-          .then(() => {
-            this.$store.dispatch("user/fetchCurrentUserInfo");
-            this.$router.push({
+          .then(async () => {
+            await this.$store.dispatch("user/fetchCurrentUserInfo");
+            await this.$router.push({
               path: this.$route.query.redirect || "/",
             });
           })
