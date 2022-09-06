@@ -36,6 +36,16 @@ const menuRoutes = [
         },
         component: () => import("@/views/user/user-list.vue"),
       },
+      {
+        name: "userRoles",
+        path: "roles",
+        meta: {
+          title: "角色管理",
+          icon: "secured",
+          permission: permissions.USER_ROLES,
+        },
+        component: () => import("@/views/user/roles.vue"),
+      },
     ],
   },
 ];
@@ -59,16 +69,6 @@ export const routes = [
     component: NotFound,
     name: "notFound",
   },
-  {
-    path: "/403",
-    component: NotAllowed,
-    name: "notAllowed",
-  },
-  {
-    path: "*",
-    redirect: "/404",
-  },
-  { path: "/404", component: NotFound, name: "notFound" },
   {
     path: "/403",
     component: NotAllowed,

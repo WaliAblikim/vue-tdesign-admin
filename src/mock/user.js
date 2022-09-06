@@ -21,7 +21,7 @@ export default [
         nickname: "瓦力",
         username: "admin",
         roles: ["admin"],
-        permissions: ["dashboard"],
+        permissions: ["dashboard", "user", "user:list", "user:roles"],
       };
     },
   },

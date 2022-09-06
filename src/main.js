@@ -6,6 +6,8 @@ import "./permission.js";
 import "tdesign-vue/dist/reset.css";
 import "tdesign-vue/es/style/index.css";
 import store from "./store";
+import "./directive/permission.js";
+
 Vue.use(TDesign);
 Vue.config.productionTip = false;
 

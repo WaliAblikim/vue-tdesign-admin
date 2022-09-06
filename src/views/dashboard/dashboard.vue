@@ -1,4 +1,8 @@
-<template><div>控制台</div></template>
+<template>
+  <div>
+    <t-button v-permission="'user:list'">按我</t-button>
+  </div>
+</template>
 
 <script>
 export default {
