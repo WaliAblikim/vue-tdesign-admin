@@ -8,7 +8,7 @@
     @close="$emit('close')"
     @confirm="onSubmit"
   >
-    <t-form ref="form" :dat="role" :rules="rules">
+    <t-form ref="form" :data="role" :rules="rules">
       <t-form-item label="角色" name="name">
         <t-input placeholder="请输角色名称容" v-model="role.name" />
       </t-form-item>
@@ -18,11 +18,11 @@
       <t-form-item label="权限集" name="permissions">
         <t-tree
           :data="permissionsTree"
+          v-model="role.permissions"
           hover
           expand-all
           :checkable="true"
-          value-mode="valueMode"
-          @change="onChange"
+          value-mode="all"
         />
       </t-form-item>
     </t-form>
@@ -84,9 +84,6 @@ export default {
         this.$emit("close");
         await this.$message.success("角色创建成功");
       }
-    },
-    onChange(checked) {
-      this.role.permissions = checked;
     },
   },
 };

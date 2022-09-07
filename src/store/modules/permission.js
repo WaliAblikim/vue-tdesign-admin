@@ -2,7 +2,7 @@ import { routes } from "@/router";
 import storage from "@/utils/storage";
 
 const state = {
-  routes: [],
+  routes: storage.get("permissionRoutes"),
 };
 
 const actions = {

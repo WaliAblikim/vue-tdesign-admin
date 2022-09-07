@@ -16,12 +16,13 @@ router.beforeEach((to, from, next) => {
     next({ path: "/" });
   }
 
-  // const hasPermissions = store.getters.permissionRoutesNameList.includes(
-  //   to.name
-  // );
-  // console.log(hasPermissions);
-  // if (!hasPermissions && whiteList.indexOf(to.path) === -1) {
-  //   next({ path: "/403" });
-  // }
+  //在第9课时会讲到相关内容
+  const hasPermissions = store.getters.permissionRoutesNameList.includes(
+    to.name
+  );
+
+  if (!hasPermissions && whiteList.indexOf(to.path) === -1) {
+    next({ path: "/403" });
+  }
   next();
 });
