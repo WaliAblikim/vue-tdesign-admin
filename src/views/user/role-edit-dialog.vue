@@ -7,6 +7,7 @@
     :closeOnEscKeydown="false"
     @close="$emit('close')"
     @confirm="onSubmit"
+    @cancel="$emit('close')"
   >
     <t-form ref="form" :data="role" :rules="rules">
       <t-form-item label="角色" name="name">
@@ -48,7 +49,11 @@ export default {
     show: function (value) {
       this.visible = value;
     },
+    data: function (value) {
+      this.role = value;
+    },
   },
+
   data() {
     return {
       visible: false,

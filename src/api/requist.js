@@ -1,9 +1,19 @@
 import axios from "axios";
-import { MessagePlugin } from "tdesign-vue";
+import { MessagePlugin } from "tdesign-vue/lib/plugins.js";
+import store from "@/store/index.js";
+
 const baseUrl = process.env.VUE_APP_BASE_API;
+const tokenPrefix = "Bearer ";
 
 const instance = axios.create({
   baseURL: baseUrl,
+});
+
+instance.interceptors.request.use((request) => {
+  if (store.state.token) {
+    request.headers["Authorization"] = tokenPrefix + store.state.token;
+  }
+  return request;
 });
 
 instance.interceptors.response.use(
@@ -15,11 +25,20 @@ instance.interceptors.response.use(
     }
     return response.data;
   },
-  (error) => {
-    MessagePlugin.error(error.message);
+  async (error) => {
+    await handleResponseError(error);
     return Promise.reject(error);
   }
 );
 
+const handleResponseError = async (error) => {
+  const { response } = error;
+  if (error.code === 401) {
+    await store.dispatch("logout");
+  }
+  await MessagePlugin.error(response.data.message);
+};
+
 const { get, post } = instance;
+
 export { get, post };

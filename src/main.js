@@ -11,7 +11,7 @@ import "./directive/permission.js";
 Vue.use(TDesign);
 Vue.config.productionTip = false;
 
-process.env.NODE_ENV === "development" && require("./mock");
+// process.env.NODE_ENV === "development" && require("./mock");
 
 new Vue({
   router,

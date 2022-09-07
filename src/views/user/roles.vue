@@ -3,7 +3,12 @@
     <t-row>
       <t-button @click="handleCreate">创建角色</t-button>
     </t-row>
-    <t-table row-key="index" :data="roles" :columns="columns">
+    <t-table
+      row-key="index"
+      :data="roles"
+      :columns="columns"
+      :pagination="paging"
+    >
       <template #operation="slotProps">
         <t-button variant="text" theme="primary" @click="handleEdit(slotProps)"
           ><icon name="edit"></icon>编辑</t-button
@@ -24,6 +29,7 @@
 <script>
 import { Icon } from "tdesign-icons-vue";
 import RoleEditDialog from "@/views/user/role-edit-dialog";
+import roleApi from "@/api/role";
 
 export default {
   name: "UserRoles",
@@ -44,9 +50,24 @@ export default {
       ],
       showRoleEditDialog: false,
       editData: null,
+      paging: {
+        current: 1,
+        pageSize: 10,
+        total: 0,
+      },
     };
   },
+  mounted() {
+    this.fetchData();
+  },
   methods: {
+    async fetchData() {
+      const { data, paging } = await roleApi.list({});
+      this.roles = data;
+      this.paging.current = paging.page;
+      this.paging.pageSize = paging.size;
+      this.paging.total = paging.total;
+    },
     handleCreate() {
       this.showRoleEditDialog = true;
     },
