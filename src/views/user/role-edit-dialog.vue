@@ -1,5 +1,6 @@
 <template>
   <t-dialog
+    ref="dialog"
     :header="data ? '编辑角色' : '创建角色'"
     :visible.sync="visible"
     width="900px"
@@ -9,21 +10,21 @@
     @confirm="onSubmit"
     @cancel="$emit('close')"
   >
-    <t-form ref="form" :data="role" :rules="rules">
+    <t-form v-if="role" ref="form" :data="role" :rules="rules">
       <t-form-item label="角色" name="name">
         <t-input placeholder="请输角色名称容" v-model="role.name" />
       </t-form-item>
-      <t-form-item label="角色标识" name="label" i>
+      <t-form-item label="角色标识" name="label">
         <t-input placeholder="请输入角色标识" v-model="role.label" />
       </t-form-item>
       <t-form-item label="权限集" name="permissions">
         <t-tree
           :data="permissionsTree"
-          v-model="role.permissions"
           hover
           expand-all
           :checkable="true"
           value-mode="all"
+          v-model="role.permissions"
         />
       </t-form-item>
     </t-form>
@@ -31,7 +32,7 @@
 </template>
 
 <script>
-import { permissionsTree } from "@/config/permission.config";
+import { permissionsTree } from "@/config/permission.config.js";
 import roleApi from "@/api/role.js";
 
 export default {
