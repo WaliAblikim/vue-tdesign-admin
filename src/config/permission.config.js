@@ -4,6 +4,9 @@ export const permissions = {
   USER_LIST: "user:list",
   USER_LIST_ADD: "user:list:add",
   USER_ROLES: "user:roles",
+  USER_ROLES_CREATE: "user:roles:create",
+  USER_ROLES_EDIT: "user:roles:edit",
+  USER_ROLES_DELETE: "user:roles:delete",
 };
 export const permissionsTree = [
   { label: "控制台", value: permissions.DASHBOARD },

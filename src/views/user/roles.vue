@@ -1,7 +1,11 @@
 <template>
   <t-card>
     <t-row>
-      <t-button @click="handleCreate">创建角色</t-button>
+      <t-button
+        v-permission="permissions.USER_ROLES_CREATE"
+        @click="handleCreate"
+        >创建角色</t-button
+      >
     </t-row>
     <t-table
       row-key="index"
@@ -10,10 +14,17 @@
       :pagination="paging"
     >
       <template #operation="slotProps">
-        <t-button variant="text" theme="primary" @click="handleEdit(slotProps)"
+        <t-button
+          v-permission="permissions.USER_ROLES_EDIT"
+          variant="text"
+          theme="primary"
+          @click="handleEdit(slotProps)"
           ><icon name="edit"></icon>编辑</t-button
         >
-        <t-button variant="text" theme="danger"
+        <t-button
+          v-permission="permissions.USER_ROLES_DELETE"
+          variant="text"
+          theme="danger"
           ><icon name="delete"></icon>删除</t-button
         >
       </template>
@@ -28,8 +39,9 @@
 
 <script>
 import { Icon } from "tdesign-icons-vue";
-import RoleEditDialog from "@/views/user/role-edit-dialog";
+import RoleEditDialog from "@/views/user/role-edit-dialog.vue";
 import roleApi from "@/api/role";
+import { permissions } from "@/config/permission.config.js";
 
 export default {
   name: "UserRoles",
@@ -55,6 +67,7 @@ export default {
         pageSize: 10,
         total: 0,
       },
+      permissions,
     };
   },
   mounted() {

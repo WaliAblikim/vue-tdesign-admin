@@ -15,8 +15,6 @@ router.beforeEach((to, from, next) => {
   if (hasToken && to.path === "/login") {
     next({ path: "/" });
   }
-
-  //在第9课时会讲到相关内容
   const hasPermissions = store.getters.permissionRoutesNameList.includes(
     to.name
   );
