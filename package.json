@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "template": "plop"
+    "template": "plop",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "@jiaminghi/data-view": "^2.10.0",
