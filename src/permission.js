@@ -9,7 +9,7 @@ router.beforeEach((to, from, next) => {
   if (!hasToken) {
     whiteList.indexOf(to.path) !== -1
       ? next()
-      : next(`login?redirect=${to.path}`);
+      : next(`/login?redirect=${to.path}`);
   }
 
   if (hasToken && to.path === "/login") {
@@ -19,7 +19,7 @@ router.beforeEach((to, from, next) => {
     to.name
   );
 
-  if (!hasPermissions && whiteList.indexOf(to.path) === -1) {
+  if (hasToken && !hasPermissions && whiteList.indexOf(to.path) === -1) {
     next({ path: "/403" });
   }
   next();
