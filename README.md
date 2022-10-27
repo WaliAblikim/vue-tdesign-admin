@@ -1,6 +1,8 @@
 # vue2
-username: admin
+```
+username: admin 
 password:admin123
+```
 
 ## Project setup
 ```
